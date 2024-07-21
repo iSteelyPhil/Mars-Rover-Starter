@@ -19,6 +19,6 @@ describe("Message class", function() {
         let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK', 1200)];
         let message = new Message('Test Message', commands);
         expect(message.commands).toEqual(commands);
-        console.log(commands)
+        /* console.log(commands) */
       });
 });
