@@ -58,11 +58,11 @@ describe("Rover class", function() {
 
     //TEST 12
     it("responds with a false completed value when attempting to move in LOW_POWER mode", function() {
-      let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
+      let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 100)];
       let message = new Message('Low Power, cannot move', commands);
       let rover = new Rover(100);
       let response = rover.receiveMessage(message);
-      expect(response.results[0].completed).toBe(false);
+      expect(response.results[1].completed).toEqual(false);
       expect(rover.mode).toEqual('LOW_POWER');
     });
 
@@ -73,8 +73,8 @@ describe("Rover class", function() {
       let rover = new Rover(123);
       let response = rover.receiveMessage(message);
       expect(response.results[0].completed).toBe(true);
+      expect(response.results[1].completed).toBe(true);
       expect(rover.position).toEqual(message.commands[1].value);
-
     });
 
 });

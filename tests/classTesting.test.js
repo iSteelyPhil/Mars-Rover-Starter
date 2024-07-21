@@ -1,5 +1,5 @@
 /* const classTest = require('../classTesting.js'); */
-const Astronaut = require('../classTesting');
+const Astronaut = require('../CLASS TESTING/classTesting');
 
 describe('Astronaut Class Tests', () => {
     test('should create an Astronaut instance with correct properties', () => {

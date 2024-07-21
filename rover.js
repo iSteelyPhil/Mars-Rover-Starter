@@ -24,33 +24,23 @@ class Rover {
                            });
                         }
                            if(message.commands[i].commandType === "MODE_CHANGE") {
-                              if(message.commands[i].value === "LOW_POWER") {
                               this.mode = message.commands[i].value
                               response.results.push({
-                              completed: false
-                           
-                           });
-                              } else if(message.commands[i].value === "NORMAL"){
-                                 this.mode = message.commands[i].value
-                                 response.results.push({
-                                 completed: true});
-                           
-                           }
+                              completed: true
+                           })
                         }
-                      if(message.commands[i].commandType === "MOVE") {
-                           if(this.mode === 'LOW_POWER'){
-                              response.results.push({
-                                 completed: false});
-                           }else{
-                           this.position = message.commands[i].value
-                           response.results.push({
-                           completed: true
-                        });
+                        if(this.mode === 'LOW_POWER' && message.commands[i].commandType === 'MOVE') {
+                           response.results.push({completed: false});
+                         }
+                        if(this.mode === 'NORMAL' && message.commands[i].commandType === 'MOVE') {
+                          response.results.push({completed: true});
+                          this.position = message.commands[i].value;
+                        };
                        
                        
                      }
-                  }
-                     }
+                  
+                     
                  
                
       return response;
